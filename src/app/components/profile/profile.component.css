@@ -1,3 +1,22 @@
 .search-form {
 	padding-top: 50px;
 }
+
+.card 
+{
+	margin: 5%;
+}
+.btn
+{
+	color: #fff;
+	background-image: linear-gradient(to right, #080a0a, #090d0d, #0a1010, #0b1213, #0c1416, #0c1416, #0c1517, #0c1517, #0b1415, #091314, #081112, #071010);
+}
+
+/* .label
+{
+	padding: 2%;
+	margin: 2%;
+	border-radius: 15%;
+	border-bottom-color: aquamarine;
+} */
+

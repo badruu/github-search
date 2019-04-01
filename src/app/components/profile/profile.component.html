@@ -1,51 +1,63 @@
-<form action="" class="search-form">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findProfile()">
-	</div>
-</form>
-<div *ngIf="profile">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			{{profile.name}} <small>({{profile.login}})</small>
-			<span *ngIf="profile.company">, Works at {{profile.company}}</span>
-			{{profile.location}}
+
+<div class="container-fluid">
+	<form action="" class="search-form">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findProfile()">
+	
 		</div>
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-sm-3">
-					<img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="Profile Image">
-				</div>
-				<div class="col-sm-5">
-					<ul class="list-group">
-						<li class="list-group-item" *ngIf="profile.bio">{{profile.bio}}</li>
-						<li class="list-group-item" *ngIf="profile.hireable">Available for hire</li>
-						<li class="list-group-item" *ngIf="profile.blog"><a href="{{profile.blog}}" target="_blank">{{profile.blog}}</a></li>
-						<li class="list-group-item" *ngIf="profile.email"><a href="emailto:{{profile.email}}">{{profile.email}}</a></li>
-					</ul>
-				</div>
-				<div class="col-sm-4">
-					<div>
-						<p>
-							<span class="label label-default">{{profile.followers}} Followers</span>
-							<span class="label label-primary">Following {{profile.following}}</span>
-							<span class="label label-success">{{profile.public_gists}} Public gists</span>
-							<span class="label label-info">{{profile.public_repos}} Public Repos</span>
-						</p>
-						<p><a href="{{profile.html_url}}" target="_blank" class="btn btn-success btn-sm">View profile on github</a></p>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Repos</h3>
-							</div>
-							<div class="panel-body" *ngFor="let repo of repos">
-								<p class="clearfix">
-									{{repo.name}} <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm btn-warning pull-right">View this project on github</a>
-								</p>
-								<p>{{repo.description}}</p>
-							</div>
-						</div>
+	</form>
+	<div *ngIf="profile">
+		<div class="row">
+		<div class="card">
+			<div class="col-md-4">
+				<div class="jumbotron">
+					<img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="profile Image"><hr>
+					<div class="card-body">
+						<h5 class="card-title"> {{profile.name}} <small>({{profile.login}})</small> </h5>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="col-md-4">
+			<div class="card-body">
+				<h5 class="card-title">Info:</h5>
+				<p class="card-text">{{profile.followers}} Followers</p>
+				<p class="card-text">Following {{profile.following}}</p>
+				<p class="card-text">{{profile.public_gists}} Public gists</p>
+				<p class="card-text">{{profile.public_repos}} Public Repos</p><hr><hr>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card-body">
+				<p class="card-text" *ngIf="profile.company">Works at {{profile.company}}.</p>
+				<p class="card-text" *ngIf="profile.location">{{profile.location}}.</p>
+				<p *ngIf="profile.bio">Bio: {{profile.bio}}</p>
+				<p *ngIf="profile.hireable">Available for hire</p>
+				<p *ngIf="profile.blog"><a href="{{profile.blog}}" target="_blank">{{profile.blog}}</a></p>
+				<p *ngIf="profile.email"><a href="emailto:{{profile.email}}">{{profile.email}}</a></p><hr>
+			</div>
+		</div>
 	</div>
+
+	<p><a href="{{profile.html_url}}" target="_blank" class="btn btn-success btn-sm">View profile on github</a></p>
+
+
+
+	</div>
+
+	
+
+		<div class="row">
+				<div class="card">
+						<div class="card-body">
+							<div class="card-title col-md-3 mr-1" *ngFor="let repo of repos">
+								<h3>Repository</h3><br>
+								<p class="clearfix">
+									{{repo.name}} <br> <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm">View this project on github</a>
+								</p><br><hr>
+								<p>{{repo.description}}</p><br><hr>
+							</div>
+						</div>
+					</div>
+		</div>
 </div>
