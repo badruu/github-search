@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ProfileService {
 
   private username:string;
-  private clientid = 'f3571d8e55e169540825';
-  private clientsecret = 'a6c2b7d8f7c691e771b1908873e1322028e097c4';
+  private access_token = 'cdd68528e0f362917c2ff22b1cf515c12683c893';
+
 
   constructor(private http:HttpClient) { 
   	console.log("service is now ready!");
@@ -15,13 +15,11 @@ export class ProfileService {
   }
 
   getProfileInfo(){
-  	return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" + this.clientid + "&client_secret=" + this.clientsecret)
-  	.map(res => res);
+  	return this.http.get("https://api.github.com/users/" + this.username + "?access_token=" + this.access_token).pipe(map(res => res));
   }
 
   getProfileRepos(){
-  	return this.http.get("https://api.github.com/users/" + this.username + "/repos?client_id=" + this.clientid + "&client_secret=" + this.clientsecret)
-  	.map(res => res);
+  	return this.http.get("https://api.github.com/users/" + this.username + "/repos?access_token=" + this.access_token).pipe(map(res => res));
   }
 
   updateProfile(username:string){
