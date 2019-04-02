@@ -8,11 +8,13 @@ import { ProfileService } from './services/profile.service';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HeaderComponent } from './components/header/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent
+    ProfileComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
