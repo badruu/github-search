@@ -1,63 +1,100 @@
-
+<app-header></app-header>
 <div class="container-fluid">
-	<form action="" class="search-form">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findProfile()">
-	
+  <div class="row">
+    <div class="col-md-5">
+      <form action="" class="search-form">
+        <div class="form-group">
+			<p>
+				You can search for git users below.
+			</p>
+	        <input type="text" class="form-control" placeholder="Search with username" [(ngModel)]="username" name="username" (keyup)="findProfile()">
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5">
+		<div class="about">
+			<h2>About The App</h2>
+		<p>This app can be used to display Information about a user's github account</p>
+		<p>
+			Guide:
+			<ul>
+				<li>Key in the user's account name in the search tool box on the left side</li>
+				<li>The profile picture with the username is displayed</li>
+				<li>
+				  Also, the number of:
+				  <ul>
+					<li>Followers</li>
+					<li>Following</li>
+					<li>Public gists</li>
+					<li>Public repositories</li>
+				  </ul>
+				</li>
+				<li>A list of a user's Bio, whether available for hire and personal blog will also be displayed if the user has those details in his/her github account</li>
+			</ul>
+		<!-- </p> -->
 		</div>
-	</form>
-	<div *ngIf="profile">
-		<div class="row">
-		<div class="card">
-			<div class="col-md-4">
-				<div class="jumbotron">
-					<img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="profile Image"><hr>
-					<div class="card-body">
-						<h5 class="card-title"> {{profile.name}} <small>({{profile.login}})</small> </h5>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="card-body">
-				<h5 class="card-title">Info:</h5>
-				<p class="card-text">{{profile.followers}} Followers</p>
-				<p class="card-text">Following {{profile.following}}</p>
-				<p class="card-text">{{profile.public_gists}} Public gists</p>
-				<p class="card-text">{{profile.public_repos}} Public Repos</p><hr><hr>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="card-body">
-				<p class="card-text" *ngIf="profile.company">Works at {{profile.company}}.</p>
-				<p class="card-text" *ngIf="profile.location">{{profile.location}}.</p>
-				<p *ngIf="profile.bio">Bio: {{profile.bio}}</p>
-				<p *ngIf="profile.hireable">Available for hire</p>
-				<p *ngIf="profile.blog"><a href="{{profile.blog}}" target="_blank">{{profile.blog}}</a></p>
-				<p *ngIf="profile.email"><a href="emailto:{{profile.email}}">{{profile.email}}</a></p><hr>
-			</div>
-		</div>
-	</div>
+		
+	  </div>
+  </div>
 
-	<p><a href="{{profile.html_url}}" target="_blank" class="btn btn-success btn-sm">View profile on github</a></p>
+  <div *ngIf="profile">
+    <div class="row">
+      <div class="card">
+        <div class="col-md-4">
+          <div class="jumbotron">
+            <img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="profile Image">
+            <hr>
+            <div class="card-body">
+              <h5 class="card-title"> {{profile.name}} <small>({{profile.login}})</small> </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h5 class="card-title">Info:</h5>
+          <p class="card-text">{{profile.followers}} Followers</p>
+          <p class="card-text">Following {{profile.following}}</p>
+          <p class="card-text">{{profile.public_gists}} Public gists</p>
+          <p class="card-text">{{profile.public_repos}} Public Repos</p>
+          <hr>
+          <hr>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <p class="card-text" *ngIf="profile.company">Works at {{profile.company}}.</p>
+          <p class="card-text" *ngIf="profile.location">{{profile.location}}.</p>
+          <p *ngIf="profile.bio">Bio: {{profile.bio}}</p>
+          <p *ngIf="profile.hireable">Available for hire</p>
+          <p *ngIf="profile.blog"><a href="{{profile.blog}}" target="_blank">{{profile.blog}}</a></p>
+          <p *ngIf="profile.email"><a href="emailto:{{profile.email}}">{{profile.email}}</a></p>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+    <p><a href="{{profile.html_url}}" target="_blank" class="btn btn-success btn-sm">View profile on github</a></p>
 
 
 
-	</div>
+  </div>
 
-	
 
-		<div class="row">
-				<div class="card">
-						<div class="card-body">
-							<div class="card-title col-md-3 mr-1" *ngFor="let repo of repos">
-								<h3>Repository</h3><br>
-								<p class="clearfix">
-									{{repo.name}} <br> <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm">View this project on github</a>
-								</p><br><hr>
-								<p>{{repo.description}}</p><br><hr>
-							</div>
-						</div>
-					</div>
-		</div>
+
+  <div class="row">
+    <div class="card col-md-3 mr-1" id="repos" *ngFor="let repo of repos" >
+      <div class="card-body">
+        <!-- <div class="card-title col-md-3 mr-1" > -->
+          <h3>Repository</h3><br>
+          <p class="clearfix">
+            {{repo.name}} <br> <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm">View this project on github</a>
+          </p><br>
+          <hr>
+          <p>{{repo.description}}</p><br>
+          <hr>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
 </div>
