@@ -1,0 +1,16 @@
+.container
+{
+    color: #fff;
+    background-image: linear-gradient(to right, #080a0a, #090d0d, #0a1010, #0b1213, #0c1416, #0c1416, #0c1517, #0c1517, #0b1415, #091314, #081112, #071010);
+}
+.lead
+{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-stretch: extra-expanded;
+    font-weight: 700;
+    font-variant-caps: titling-caps;
+    font-style: normal;
+    font-kerning: normal;
+    fill-opacity: inherit;
+}
